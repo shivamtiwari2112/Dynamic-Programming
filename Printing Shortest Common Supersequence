@@ -11,7 +11,7 @@ class Solution {
             if(str1.charAt(i-1)==str2.charAt(j-1))
                 t[i][j] = 1 + t[i-1][j-1];
             else
-                t[i][j] = Math.max(t[i-1][j], t[i][j-1]);
+                t[i][j] = 0 + Math.max(t[i-1][j], t[i][j-1]);
         }
 
         int len = t[m][n];
@@ -27,17 +27,14 @@ class Solution {
                 i--;
                 j--;
             }
-            else {
-                if(t[i][j-1] > t[i-1][j])
-                {
+            else if(t[i][j-1] > t[i-1][j])
+            {
                     s+=str2.charAt(j-1);
                     j--;
-                }
-                else if(t[i-1][j] > t[i][j-1])
-                {
-                    s+=str1.charAt(i-1);
-                    i--;
-                }
+            }
+            else {
+                s += str1.charAt(i-1);
+                i--;
             }
         }
         while(i>0)
